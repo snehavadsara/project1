@@ -8,10 +8,10 @@ app.use(bodyParser.json());
 
 // Database connection settings
 const db = mysql.createConnection({
-    host: 'your-server-name.database.windows.net',
-    user: 'your-username',
-    password: 'your-password',
-    database: 'your-database-name'
+    host: 'dbdemoserver1.database.windows.net',
+    user: 'sneha',
+    password: 'Az900demo@123',
+    database: 'dbdemo'
 });
 
 // Connect to database
@@ -26,7 +26,7 @@ db.connect((err) => {
 app.post('/submit', (req, res) => {
     const { name, email, message } = req.body;
 
-    const sql = 'INSERT INTO ContactForm (name, email, message) VALUES (?, ?, ?)';
+    const sql = 'INSERT INTO Person (name, email, message) VALUES (?, ?, ?)';
     db.query(sql, [name, email, message], (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Database error: ' + err.message });
